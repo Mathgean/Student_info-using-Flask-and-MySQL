@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border = "2">
+    <tr>
+        <th>REG_NO</th>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>CITY</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+    </tr>
+    {% for data in datas: %}
+    <tr>
+    <td>{{ data.Reg_No }}</td>
+    <td>{{ data.Name }}</td>
+    <td>{{ data.Age }}</td>
+    <td>{{ data.City }}</td>
+    <td><a href="{{ url_for('update',id = data.Reg_No) }}" >Update</a></td>
+    <td><a href="{{ url_for('delete',id = data.Reg_No) }}" onclick = 'return confirm("Are you sure?")'>Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('add') }}">Add+</a>
+<h3>
+    {% with messages = get_flashed_messages() %}
+    {% for message in messages: %}
+    {{message}}
+    {% endfor %}
+    {% endwith %}
+</h3>
+
+</body>
+</html>
