@@ -47,7 +47,6 @@ def add():
     return render_template('add.html')
 
 
-
 @web.route('/update/<id>', methods=['GET', 'POST'])
 def update(id):
     if request.method == 'POST':
@@ -69,5 +68,5 @@ def update(id):
 
 
 if __name__ == "__main__":
-    web.secret_key="s2k9d2"
+    web.secret_key = "s2k9d2"
     web.run(debug=True)

@@ -3,36 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<table border = "2">
-    <tr>
-        <th>REG_NO</th>
-        <th>NAME</th>
-        <th>AGE</th>
-        <th>CITY</th>
-        <th>UPDATE</th>
-        <th>DELETE</th>
-    </tr>
-    {% for data in datas: %}
-    <tr>
-    <td>{{ data.Reg_No }}</td>
-    <td>{{ data.Name }}</td>
-    <td>{{ data.Age }}</td>
-    <td>{{ data.City }}</td>
-    <td><a href="{{ url_for('update',id = data.Reg_No) }}" >Update</a></td>
-    <td><a href="{{ url_for('delete',id = data.Reg_No) }}" onclick = 'return confirm("Are you sure?")'>Delete</a></td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="{{ url_for('add') }}">Add+</a>
-<h3>
-    {% with messages = get_flashed_messages() %}
-    {% for message in messages: %}
-    {{message}}
-    {% endfor %}
-    {% endwith %}
-</h3>
-
+    <h1 align = center>STUDENT MANAGEMENT SYSTEM</h1>
+    <h3 class="mt-3">
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        {% endwith %}
+    </h3>
+    <div class="container mt-5">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>REG_NO</th>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>CITY</th>
+                    <th>UPDATE</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in datas %}
+                <tr>
+                    <td>{{ data.Reg_No }}</td>
+                    <td>{{ data.Name }}</td>
+                    <td>{{ data.Age }}</td>
+                    <td>{{ data.City }}</td>
+                    <td><a href="{{ url_for('update', id=data.Reg_No) }}" class="btn btn-primary">Update</a></td>
+                    <td><a href="{{ url_for('delete', id=data.Reg_No) }}" class="btn btn-danger" onclick='return confirm("Are you sure?")'>Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('add') }}" class="btn btn-success">Add+</a>
+        <h3 class="mt-3">
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endwith %}
+        </h3>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
